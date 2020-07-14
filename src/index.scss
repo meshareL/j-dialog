@@ -1,0 +1,120 @@
+/**
+ * j-dialog component style
+ */
+$color-white: #ffffff !default;
+$color-gray: #e1e4e8 !default;
+$color-gray-light: #f6f8fa !default;
+
+$backdrop-zindex: 50 !default;
+$dialog-zindex: 51 !default;
+
+$border-width: 1px !default;
+$border-style: solid !default;
+$border-color: $color-gray !default;
+$border: $border-width $border-style $border-color !default;
+$border-radius: 3px !default;
+
+$closer-color: #586069 !default;
+$closer-hover-color: #0366d6 !default;
+
+.j-dialog-transition-enter-active { transition: opacity .3s ease-in; }
+
+.j-dialog-transition-enter,
+.j-dialog-transition-leave-to { opacity: 0; }
+
+.j-dialog-wrapper { position: relative; }
+
+.j-dialog-backdrop {
+  position: fixed;
+  z-index: $backdrop-zindex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .7);
+}
+
+.j-dialog {
+  display: flex;
+  flex-direction: column;
+  border: $border;
+  border-radius: $border-radius;
+  background-color: $color-white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+
+  &.dragging { cursor: move; }
+
+  &.rudiment{
+    position: fixed;
+    z-index: $dialog-zindex;
+    top: 15vh;
+    left: 50%;
+    transform: translate3d(-50%, 0, 1px);
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+
+  .dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
+    background-color: $color-gray-light;
+
+    &:only-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    &.draggable { cursor: move; }
+
+    .title {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .describe {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 10px;
+      font-weight: 400;
+      opacity: 0.75;
+    }
+
+    .closer {
+      margin: -16px -16px -16px 0;
+      padding: 16px;
+      border: none;
+      color: $closer-color;
+      background-color: transparent;
+      line-height: 1;
+      cursor: pointer;
+
+      &:hover { color: $closer-hover-color; }
+
+      svg { vertical-align: middle; }
+    }
+  }
+
+  .dialog-content {
+    padding: 16px;
+    border-top: $border;
+    overflow-y: auto;
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+
+  .dialog-footer {
+    padding: 16px;
+    border-top: $border;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>j-dialog example</title>
+
+    <link rel="stylesheet" type="text/css" href="../dist/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha256-aAr2Zpq8MZ+YA/D6JtRD3xtrwpEz2IqOS+pWD/7XKIw=" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {
+            font-size: 14px;
+            height: 200vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
+    <script type="application/javascript" src="../dist/index.umd.js"></script>
+
+    <script type="text/x-template" id="demo">
+        <div class="container" style="padding-top: 15vh; height: 200vh">
+            <button class="btn btn-primary" type="button" @click="visible = true">Open Dialog</button>
+
+            <j-dialog :visible.sync="visible"
+                      title-id="dialog_title"
+                      title="列表渲染"
+                      describe-id="dialog_describe">
+                <template #describe>
+                    用 <code class="text-danger">v-for</code> 把一个数组对应为一组元素
+                </template>
+
+                <j-dialog-content>
+                    <p>
+                        我们可以用
+                        <code class="text-danger">v-for</code>
+                        指令基于一个数组来渲染一个列表。
+                        <code class="text-danger">v-for</code>
+                        指令需要使用
+                        <code class="text-danger">item in items</code>
+                        形式的特殊语法，其中
+                        <code class="text-danger">items</code>
+                        是源数据数组，而
+                        <code class="text-danger">item</code>
+                        则是被迭代的数组元素的
+                        <strong>别名</strong>
+                        。
+                    </p>
+                    <p>
+                        在
+                        <code class="text-danger">v-for</code>
+                        块中，我们可以访问所有父作用域的 property。
+                        <code class="text-danger">v-for</code>
+                        还支持一个可选的第二个参数，即当前项的索引。
+                    </p>
+                    <p>
+                        你也可以用
+                        <code class="text-danger">of</code>
+                        替代
+                        <code class="text-danger">in</code>
+                        作为分隔符，因为它更接近 JavaScript 迭代器的语法：
+                    </p>
+                </j-dialog-content>
+
+                <j-dialog-footer class="text-right">
+                    <j-dialog-button class="btn btn-sm btn-danger" :priority="1" :is-dismisser="true">关闭</j-dialog-button>
+                </j-dialog-footer>
+            </j-dialog>
+        </div>
+    </script>
+    <script type="application/javascript">
+        Vue.use(window.JDialog);
+
+        new Vue({
+            template: '#demo',
+            data() { return { visible: false } }
+        }).$mount('#root');
+    </script>
+</body>
+</html>

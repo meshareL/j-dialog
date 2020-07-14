@@ -1,0 +1,72 @@
+{
+  "name": "@tomoeed/j-dialog",
+  "version": "1.0.0",
+  "description": "A dialog component for vue",
+  "author": "meshare",
+  "homepage": "https://github.com/meshareL/j-dialog",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meshareL/j-dialog.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meshareL/j-dialog/issues"
+  },
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "types": "index.d.ts",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "keywords": [
+    "vue",
+    "modal",
+    "dialog"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c && node script/build-css.js",
+    "pretest": "npm run build",
+    "test": "karma start test/karma.config.js",
+    "prepublishOnly": "npm run build"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@rollup/plugin-commonjs": "^13.0.1",
+    "@rollup/plugin-node-resolve": "^8.4.0",
+    "@types/chai": "^4.2.11",
+    "@types/karma": "^5.0.0",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^14.0.22",
+    "@types/sass": "^1.16.0",
+    "@vue/test-utils": "^1.0.3",
+    "autoprefixer": "^9.8.5",
+    "chai": "^4.2.0",
+    "cssnano": "^4.1.10",
+    "karma": "^5.1.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-webpack": "^4.0.2",
+    "mocha": "^8.0.1",
+    "postcss": "^7.0.32",
+    "rollup": "^2.21.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-clear": "^2.0.7",
+    "rollup-plugin-terser": "^6.1.0",
+    "sass": "^1.26.10",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.43.0"
+  }
+}

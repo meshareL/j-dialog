@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>j-dialog component drag</title>
+
+    <link rel="stylesheet" type="text/css" href="../dist/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha256-aAr2Zpq8MZ+YA/D6JtRD3xtrwpEz2IqOS+pWD/7XKIw=" crossorigin="anonymous">
+
+    <style type="text/css">
+        body {
+            font-size: 14px;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
+    <script type="application/javascript" src="../dist/index.umd.js"></script>
+
+    <script type="text/x-template" id="j-dialog-draggable">
+        <div class="container" style="padding-top: 15vh; height: 200vh">
+            <button class="btn btn-primary mr-5" @click="modalDialog = true" type="button">Open modal dialog</button>
+            <button class="btn btn-primary" @click="nonmodalDialog = !nonmodalDialog" type="button">Open non-modal dialog</button>
+
+            <j-dialog :visible.sync="modalDialog" :draggable="true" title-id="modal_dialog_title" title="组件注册">
+                <j-dialog-content>
+                    <h3>组件名</h3>
+                    <hr>
+                    <p>在注册一个组件的时候，我们始终需要给它一个名字。比如在全局注册的时候我们已经看到了：</p>
+                    <p class="p-2 bg-light">
+                        <code class="hljs text-body">
+                            Vue.component(
+                            <span class="text-success">'my-component-name'</span>
+                            , {
+                            <span class="text-secondary">/* ... */</span>
+                            })
+                        </code>
+                    </p>
+                    <p>该组件名就是 <code class="text-danger">Vue.component</code> 的第一个参数。</p>
+                    <p>
+                        你给予组件的名字可能依赖于你打算拿它来做什么。当直接在 DOM 中使用一个组件 (而不是在字符串模板或
+                        <a href="https://cn.vuejs.org/v2/guide/single-file-components.html" class="text-success">单文件组件</a>
+                        ) 的时候，我们强烈推荐遵循
+                        <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name"
+                           class="text-success" target="_blank" rel="noopener">W3C 规范</a>
+                        中的自定义组件名 (字母全小写且必须包含一个连字符)。这会帮助你避免和当前以及未来的 HTML 元素相冲突。
+                    </p>
+                    <p>
+                        你可以在
+                        <a href="https://cn.vuejs.org/v2/style-guide/#基础组件名-强烈推荐" class="text-success">风格指南</a>
+                        中查阅到关于组件名的其它建议。
+                    </p>
+                </j-dialog-content>
+
+                <j-dialog-footer class="text-right">
+                    <j-dialog-button class="btn btn-sm btn-danger" :priority="1" :is-dismisser="true">关闭</j-dialog-button>
+                </j-dialog-footer>
+            </j-dialog>
+
+            <j-dialog :visible.sync="nonmodalDialog" :modal="false" title-id="nonmodal_dialog_title">
+                <template #title>组件注册</template>
+
+                <j-dialog-content>
+                    <h3>组件名大小写</h3>
+                    <hr>
+                    <p>定义组件名的方式有两种：</p>
+                    <h4>使用 kebab-case</h4>
+                    <p class="p-2 bg-light">
+                        <code class="hljs text-body">
+                            Vue.component(
+                            <span class="text-success">'my-component-name'</span>
+                            , {
+                            <span class="text-secondary">/* ... */</span>
+                            })
+                        </code>
+                    </p>
+                    <p>
+                        当使用 kebab-case (短横线分隔命名) 定义一个组件时，你也必须在引用这个自定义元素时使用 kebab-case，例如
+                        <code class="text-danger">&lt;my-component-name&gt;</code>
+                        。
+                    </p>
+                    <h4>使用 PascalCase</h4>
+                    <p class="p-2 bg-light">
+                        <code class="hljs text-body">
+                            Vue.component(
+                            <span class="text-success">'MyComponentName'</span>
+                            , {
+                            <span class="text-secondary">/* ... */</span>
+                            })
+                        </code>
+                    </p>
+                    <p>
+                        当使用 PascalCase (首字母大写命名) 定义一个组件时，你在引用这个自定义元素时两种命名法都可以使用。也就是说
+                        <code class="text-danger">&lt;my-component-name&gt;</code>
+                        和
+                        <code class="text-danger">&lt;MyComponentName&gt;</code>
+                        都是可接受的。注意，尽管如此，直接在 DOM (即非字符串的模板) 中使用时只有 kebab-case 是有效的。
+                    </p>
+                </j-dialog-content>
+
+                <j-dialog-footer class="text-right">
+                    <j-dialog-button class="btn btn-sm btn-danger" :priority="1" :is-dismisser="true">关闭</j-dialog-button>
+                </j-dialog-footer>
+            </j-dialog>
+        </div>
+    </script>
+
+    <script type="application/javascript">
+        Vue.use(window.JDialog);
+
+        new Vue({
+            template: '#j-dialog-draggable',
+            data() {
+                return {
+                    modalDialog: false,
+                    nonmodalDialog: false
+                };
+            }
+        }).$mount('#root');
+    </script>
+</body>
+</html>
